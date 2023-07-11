@@ -1,3 +1,5 @@
+import numpy as np
+
 def rsdr(residuals, n_params_fit=0):
     """
     Robust Standard Deviation of the Residuals (RSDR)
@@ -18,7 +20,7 @@ def rsdr(residuals, n_params_fit=0):
         Robust Standard Deviation of Residuals. 
 
     """
-    sorted_data = np.sort(np.array(residuals).abs())
+    sorted_data = np.sort(np.abs(np.array(residuals)))
     index = int(len(sorted_data) * 0.6872)
     percentile_68 = sorted_data[index]
     n = len(residuals)
