@@ -63,21 +63,20 @@ def lorentzian_merit(params, model_func, data_points):
     merit = np.sum(np.log(1 + squared_residuals / (rsdr ** 2)))
     return merit
 
-def svi_black_scholes_call(K, params):
+def svi_black_scholes_call(K, r, a, b, rho, m, sigma):
     """
-    Computes the call option price using the SVI-Black-Scholes formula given spot price and maturity. 
+    Computes the call option price using the SVI-Black Scholes formula with spot price version.
 
     Parameters
     ----------
     K : float or array-like
         The strike prices of the call options.
 
-    params : tuple or array-like
-        The calibrated parameters of the SVI-Black Scholes model. It should contain the following elements:
-        r : float
-            The risk-free interest rate.
-        a, b, rho, m, sigma : float
-            Parameters of the SVI model.
+    r : float
+        The risk-free interest rate.
+
+    a, b, rho, m, sigma : float
+        Parameters of the SVI model.
 
     Returns
     -------
@@ -89,7 +88,6 @@ def svi_black_scholes_call(K, params):
     Spot price (S) and time to maturity (T) are hardcoded within the function.
 
     """
-    r, a, b, rho, m, sigma = params
 
     S = 4267.52                 # ^SPX close on 9/29/2023
     T = 0.31232876712328766     # time to maturity by (datetime.date(2023, 9, 29) - datetime.date(2023, 6, 7)).days/365.
