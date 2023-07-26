@@ -62,10 +62,6 @@ def lorentzian_merit(params: List[float], model_func, data_points: List[Tuple[fl
     merit = np.sum(np.log(1 + residuals**2 / (rsdr_val ** 2)))
     return merit
 
-
-
-
-
 # def model_func(x: float, params: List[float]) -> float:
 #     r, a, b, rho, m, sigma = params
 #     call_price = svi_black_scholes_call(x, r, a, b, rho, m, sigma)
@@ -136,13 +132,14 @@ if __name__ == '__main__':
         data_points[index] = (data_points[index][0], outliers[i])
 
     # Define the initial guess for the model parameters
-    initial_params = [0.0, 0.0, 0.0]
+    initial_params = [1, -5, 10]
 
     # Perform robust nonlinear regression using minimize and the Lorentzian merit
     result = minimize(lorentzian_merit, initial_params, args=(quadratic_model, data_points))
 
     # Get the optimized parameters
     optimized_params = result.x
+    print(optimized_params)
 
     # Plot the synthetic data points with outliers and the fitted curve
     x_values = np.array([x[0] for x in data_points])
@@ -180,4 +177,5 @@ if __name__ == '__main__':
 
     # # scipy.optimize.minimize(fun, x0, args=(), method=None, jac=None, hess=None, hessp=None, bounds=None, constraints=(), tol=None, callback=None, options=None)
     # a = 1
+
 # %%
