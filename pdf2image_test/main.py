@@ -1,3 +1,6 @@
+# sudo apt-get install poppler-utils
+# pip install pdf2image
+
 from pdf2image import convert_from_path
 
 if __name__ == '__main__':
