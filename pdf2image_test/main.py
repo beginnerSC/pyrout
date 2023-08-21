@@ -1,6 +1,10 @@
 # sudo apt-get install poppler-utils
 # pip install pdf2image
 
+# ctrl-F5 to execute
+
+# Kmad2023
+
 from pdf2image import convert_from_path
 
 if __name__ == '__main__':
